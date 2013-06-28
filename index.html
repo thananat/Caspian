@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Access Control Client Page </title>
+  
+  <script src="js/jquery-1.10.1.js"></script>
+</head>
+
+<body>
+  <script>
+  $(document).ready(
+    function() {
+	  $("#infoSubmitButton").click(function(event) {
+	    // Set alert box for submit button
+	    alert("Submitted data\nPIN: " + $("#PINField").val() + "\nBirthdate: " + $("#BDField").val());
+
+        // Define AJAX behavior after clicking submit button
+	    var request = $.ajax({
+	      url: "http://localhost:3000/endpoint",
+	      type: "POST",
+	      data: {PIN: $("#PINField").val(), BDate: $("#BDField").val()},
+	      dataType: "json"
+        });
+
+        request.done(function(data, textStatus, jqXHR) {
+          console.log("Success");
+          $("#resultDiv").text("Success: " + data);
+          alert("Request succeeded: " + data);
+        });
+
+        request.fail(function(jqXHR, textStatus, errorThrown) {
+          console.error("Failed");
+          $("#resultDiv").text("Error: " + errorThrown);
+          alert("Request failed: " + errorThrown);
+        });
+
+        request.always(function(jqXHR, textStatus) {
+          alert("Current status: " + textStatus);
+        });
+
+	  });    
+	});
+
+	// Watermark text fields
+//	$('#PINField').watermark("Your PIN here");
+//	$('#BDField').watermark("Your birthdate here");
+
+  </script>
+
+  <div id="accessInfo">
+	<div id="infoTitle">
+	  Fill in your PIN code and your birthdate for validation
+	</div>
+	<div id="infoFieldDiv">
+	  <table>
+		<tr>
+		  <td><label class="fieldLabel"> PIN: </label></td>
+		  <td><input id="PINField" class="fieldTextInput" type="text"></td>
+		</tr>
+		<tr>
+		  <td><label class="fieldLabel"> Birthdate:</label></td>
+		  <td><input id="BDField" class="fieldTextInput" type="text"></td>
+		</tr>
+	  </table>
+	</div>
+	<div id="infoSubmitDiv">
+	  <button id="infoSubmitButton" type="submit"> submit </button>
+	</div>
+  </div>
+  
+  <div id="resultDiv">
+    
+  </div>
+
+</body>
+</html>
