@@ -8,7 +8,7 @@ app.listen(3000);
 app.use(express.bodyParser());
 
 app.get('/', function(req, res){
-    res.send("Hello world!");
+    res.write("Hello world!");
 });
 
 app.post('/endpoint', function(req, res){
