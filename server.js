@@ -7,6 +7,10 @@ app.listen(3000);
 
 app.use(express.bodyParser());
 
+app.get('/', function(req, res){
+    res.send("Hello world!");
+});
+
 app.post('/endpoint', function(req, res){
     console.log("Data received");
 	console.log("Host: " + req.host);
