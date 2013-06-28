@@ -4,13 +4,13 @@ var app = express();
 console.log("Initialized server at port 3000");
 app.listen(3000);
 
-
 app.use(express.bodyParser());
 
 app.get('/', function(req, res){
-    res.write("Hello world!");
+    res.send("Hello world!");
 });
 
+/**
 app.post('/endpoint', function(req, res){
     console.log("Data received");
 	console.log("Host: " + req.host);
@@ -21,4 +21,5 @@ app.post('/endpoint', function(req, res){
 
 	res.send(data);
 });
+**/
 
