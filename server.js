@@ -1,14 +1,15 @@
 var express = require('express');
 var app = express();
 
-console.log("Initialized server at port 3000");
-app.listen(3000);
-
 app.use(express.bodyParser());
 
 app.get('/', function(req, res){
     res.send("Hello world!");
 });
+
+console.log("Initialized server at port 3000");
+app.listen(3000);
+
 
 /**
 app.post('/endpoint', function(req, res){
