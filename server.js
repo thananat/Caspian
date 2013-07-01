@@ -2,16 +2,12 @@ var express = require('express');
 var app = express.createServer(express.logger());
 //var app = express();
 
-console.log("Initialized server at port 3000");
-app.listen(3000);
-
-
 //app.use(express.bodyParser());
 //app.use(express.logger('dev'));
 //app.use(express.static(__dirname));
 
 app.get('/', function(req, res) {
-	res.send("Hello world!");
+    res.send("Hello world!");
 });
 
 /**
@@ -32,3 +28,7 @@ app.post('/endpoint', function(req, res){
 //	res.send({name: 'Thananat Jitapunkul', age: '25'});
 });
 **/
+
+app.listen(3000, function() {
+    console.log("Initialized server at port 3000");
+});
