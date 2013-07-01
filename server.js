@@ -1,4 +1,6 @@
 var express = require('express');
+var validator = require('./custom_modules/validator');
+
 var app = express.createServer();
 
 app.use(express.bodyParser());
@@ -15,15 +17,20 @@ app.get('/endpoint', function(req, res) {
 	res.send("GET received...");
 });
 
-app.post('/endpoint', function(req, res){
+app.post('/validateSubmit', function(req, res){
     console.log("Data received");
 	console.log("Host: " + req.host);
     console.log('Body: ' + JSON.stringify(req.body));
 
-	console.log("Responding with: " + JSON.stringify(req.body));
-	res.json(req.body);
+	var pincode = req.body.PIN;
+	var birthdate = req.body.BDate;
 
-//	res.send({name: 'Thananat Jitapunkul', age: '25'});
+	var v1 = validator();
+	v1.getMatchedID(pincode,birthdate, function(result){
+		var resData = {MatchedID: result, q: '4'};
+		console.log("Responding with: " + JSON.stringify(resData));
+		res.json(resData);
+	});
 });
 
 var port = process.env.PORT || 3000;
