@@ -35,7 +35,7 @@
 	    var request;
         request = $.ajax({
 //          url: "http://localhost/~thananat/Caspian/Server/test.php",
-          url: "/endpoint",
+          url: "/validateSubmit",
 	      type: "POST",
 	      data: {PIN: $("#PINField").val(), BDate: $("#BDField").val()},
 	      dataType: "json"
@@ -43,8 +43,8 @@
         
         request.done(function(data, textStatus, jqXHR) {
           console.log("Success");
-          $("#resultDiv").text("Success: " + data);
-          alert("Request succeeded: " + data);
+          $("#resultDiv").text("Success: " + data.MatchedID);
+          alert("Request succeeded: " + data.MatchedID);
         });
         request.fail(function(jqXHR, textStatus, errorThrown) {
           console.error("Failed");
@@ -57,13 +57,10 @@
       });
 
     });
-
-	// Watermark text fields
-//	$('#PINField').watermark("Your PIN here");
-//	$('#BDField').watermark("Your birthdate here");
-
   </script>
+</head>
 
+<body>
   <div id="accessInfo">
 	<div id="infoTitle">
 	  Fill in your PIN code and your birthdate for validation
