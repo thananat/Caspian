@@ -9,7 +9,6 @@ app.get('/', function(req, res) {
     res.send("Hello world!");
 });
 
-/**
 app.get('/endpoint', function(req, res) {
 	console.log("GET Received by server");
 	res.contentType('text/plain');
@@ -26,7 +25,6 @@ app.post('/endpoint', function(req, res){
 
 //	res.send({name: 'Thananat Jitapunkul', age: '25'});
 });
-**/
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
