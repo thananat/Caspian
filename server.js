@@ -7,7 +7,7 @@ app.listen(3000);
 
 app.use(express.bodyParser());
 app.use(express.logger('dev'));
-app.use(express.static(__dirname));
+//app.use(express.static(__dirname));
 
 app.get('/', function(req, res) {
 	res.send("Hello world!");
