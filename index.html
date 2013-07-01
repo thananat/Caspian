@@ -4,9 +4,6 @@
   <title> Access Control Client Page </title>
   
   <script src="js/jquery-1.10.1.js"></script>
-</head>
-
-<body>
   <script>
   $(document).ready(
     function() {
@@ -14,32 +11,52 @@
 	    // Set alert box for submit button
 	    alert("Submitted data\nPIN: " + $("#PINField").val() + "\nBirthdate: " + $("#BDField").val());
 
+        // Define AJAX behavior after clicking submit button (GET)
+/**
+        var request = $.ajax({
+          url: "http://localhost:3000/endpoint?q=1234",
+          type: "GET"
+        });
+
+        request.done(function(data,textStatus,jqXHR) {
+          console.log("Success");
+          $("#resultDiv").text("GET SUCCESS: " + data);
+          alert("GET Request succeeded: " + data);
+        });
+
+        request.fail(function(jqXHR,textStatus,errorThrown) {
+          console.log("Failed");
+          $("#resultDiv").text("GET FAILED: " + errorThrown);
+          alert("GET Request failed: " + errorThrown);
+        });
+**/
+
         // Define AJAX behavior after clicking submit button
-	    var request = $.ajax({
-	      url: "http://localhost:3000/endpoint",
+	    var request;
+        request = $.ajax({
+//          url: "http://localhost/~thananat/Caspian/Server/test.php",
+          url: "/endpoint",
 	      type: "POST",
 	      data: {PIN: $("#PINField").val(), BDate: $("#BDField").val()},
 	      dataType: "json"
         });
-
+        
         request.done(function(data, textStatus, jqXHR) {
           console.log("Success");
           $("#resultDiv").text("Success: " + data);
           alert("Request succeeded: " + data);
         });
-
         request.fail(function(jqXHR, textStatus, errorThrown) {
           console.error("Failed");
           $("#resultDiv").text("Error: " + errorThrown);
           alert("Request failed: " + errorThrown);
         });
-
         request.always(function(jqXHR, textStatus) {
           alert("Current status: " + textStatus);
         });
+      });
 
-	  });    
-	});
+    });
 
 	// Watermark text fields
 //	$('#PINField').watermark("Your PIN here");
