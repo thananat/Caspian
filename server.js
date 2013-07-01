@@ -1,16 +1,14 @@
 var express = require('express');
-var app = express.createServer(express.logger());
-//var app = express();
+var app = express();
 
-//app.use(express.bodyParser());
-//app.use(express.logger('dev'));
-//app.use(express.static(__dirname));
+app.use(express.bodyParser());
+app.use(express.logger('dev'));
+app.use(express.static(__dirname));
 
 app.get('/', function(req, res) {
     res.send("Hello world!");
 });
 
-/**
 app.get('/endpoint', function(req, res) {
 	console.log("GET Received by server");
 	res.contentType('text/plain');
@@ -27,7 +25,6 @@ app.post('/endpoint', function(req, res){
 
 //	res.send({name: 'Thananat Jitapunkul', age: '25'});
 });
-**/
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
