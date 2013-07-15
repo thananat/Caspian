@@ -1,7 +1,8 @@
 var express = require('express');
 var validator = require('./custom_modules/validator');
 
-var app = express.createServer();
+//var app = express.createServer();
+var app = express();
 
 app.use(express.bodyParser());
 app.use(express.logger('dev'));
